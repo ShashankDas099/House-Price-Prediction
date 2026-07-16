@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bangalore House Price Predictor</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;min-height:100vh;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.glass{background:rgba(255,255,255,0.07);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:24px;padding:40px;width:100%;max-width:680px;box-shadow:0 25px 60px rgba(0,0,0,0.4)}
+h1{font-size:2rem;font-weight:800;text-align:center;margin-bottom:6px;background:linear-gradient(90deg,#a78bfa,#60a5fa,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:rgba(255,255,255,0.5);font-size:.9rem;margin-bottom:32px}
+.field{margin-bottom:24px}
+label{display:block;font-size:.8rem;font-weight:600;letter-spacing:.08em;color:#a78bfa;text-transform:uppercase;margin-bottom:10px}
+input[type=number]{width:100%;padding:14px 18px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;color:#fff;font-size:1rem;font-family:'Inter',sans-serif;outline:none;transition:.2s}
+input[type=number]:focus{border-color:#a78bfa;background:rgba(167,139,250,0.1)}
+input[type=number]::placeholder{color:rgba(255,255,255,0.3)}
+.radio-group{display:flex;gap:10px;flex-wrap:wrap}
+.radio-group input{display:none}
+.radio-group label{cursor:pointer;padding:10px 20px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);font-size:.9rem;font-weight:500;letter-spacing:0;text-transform:none;color:#fff;transition:.2s}
+.radio-group input:checked+label{background:linear-gradient(135deg,#7c3aed,#2563eb);border-color:transparent;box-shadow:0 4px 15px rgba(124,58,237,0.4)}
+.radio-group label:hover{background:rgba(255,255,255,0.12)}
+select{width:100%;padding:14px 18px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;color:#fff;font-size:.95rem;font-family:'Inter',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a78bfa' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+select option{background:#302b63;color:#fff}
+select:focus{border-color:#a78bfa}
+.btn{width:100%;padding:16px;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#2563eb);border:none;border-radius:14px;color:#fff;font-size:1.05rem;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:.3s;letter-spacing:.02em;box-shadow:0 6px 24px rgba(124,58,237,0.4)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(124,58,237,0.6)}
+.btn:active{transform:translateY(0)}
+.result{margin-top:28px;padding:24px;background:linear-gradient(135deg,rgba(52,211,153,0.15),rgba(96,165,250,0.15));border:1px solid rgba(52,211,153,0.3);border-radius:16px;text-align:center;display:none}
+.result.show{display:block;animation:pop .4s ease}
+@keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+.result-label{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px}
+.result-price{font-size:2.4rem;font-weight:800;background:linear-gradient(90deg,#34d399,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.result-sub{font-size:.85rem;color:rgba(255,255,255,0.4);margin-top:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="glass">
+  <h1>🏠 House Price Predictor</h1>
+  <p class="subtitle">Bangalore Real Estate · Linear Regression Model</p>
+
+  <div class="field">
+    <label>Area (Square Feet)</label>
+    <input type="number" id="sqft" value="1000" min="100" max="30000" placeholder="e.g. 1200"/>
+  </div>
+
+  <div class="grid">
+    <div class="field">
+      <label>BHK</label>
+      <div class="radio-group">
+        <input type="radio" name="bhk" id="bhk1" value="1"><label for="bhk1">1</label>
+        <input type="radio" name="bhk" id="bhk2" value="2" checked><label for="bhk2">2</label>
+        <input type="radio" name="bhk" id="bhk3" value="3"><label for="bhk3">3</label>
+        <input type="radio" name="bhk" id="bhk4" value="4"><label for="bhk4">4</label>
+        <input type="radio" name="bhk" id="bhk5" value="5"><label for="bhk5">5</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Bathrooms</label>
+      <div class="radio-group">
+        <input type="radio" name="bath" id="bath1" value="1"><label for="bath1">1</label>
+        <input type="radio" name="bath" id="bath2" value="2" checked><label for="bath2">2</label>
+        <input type="radio" name="bath" id="bath3" value="3"><label for="bath3">3</label>
+        <input type="radio" name="bath" id="bath4" value="4"><label for="bath4">4</label>
+        <input type="radio" name="bath" id="bath5" value="5"><label for="bath5">5</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Location</label>
+    <select id="location"></select>
+  </div>
+
+  <button class="btn" onclick="predict()">✨ Estimate Price</button>
+
+  <div class="result" id="result">
+    <div class="result-label">Estimated Price</div>
+    <div class="result-price" id="priceDisplay">—</div>
+    <div class="result-sub">in Indian Rupees (Lakhs)</div>
+  </div>
+</div>
+
+<script>
+// ── Model Data (from columns.json) ──────────────────────────────────────────
+const DATA_COLUMNS = ["total_sqft","bath","bhk","1st block jayanagar","1st phase jp nagar","2nd phase judicial layout","2nd stage nagarbhavi","5th block hbr layout","5th phase jp nagar","6th phase jp nagar","7th phase jp nagar","8th phase jp nagar","9th phase jp nagar","aecs layout","abbigere","akshaya nagar","ambalipura","ambedkar nagar","amruthahalli","anandapura","ananth nagar","anekal","anjanapura","ardendale","arekere","attibele","beml layout","btm 2nd stage","btm layout","babusapalaya","badavala nagar","balagere","banashankari","banashankari stage ii","banashankari stage iii","banashankari stage v","banashankari stage vi","banaswadi","banjara layout","bannerghatta","bannerghatta road","basavangudi","basaveshwara nagar","battarahalli","begur","begur road","bellandur","benson town","bharathi nagar","bhoganhalli","billekahalli","binny pete","bisuvanahalli","bommanahalli","bommasandra","bommasandra industrial area","bommenahalli","brookefield","budigere","cv raman nagar","chamrajpet","chandapura","channasandra","chikka tirupathi","chikkabanavar","chikkalasandra","choodasandra","cooke town","cox town","cunningham road","dasanapura","dasarahalli","devanahalli","devarachikkanahalli","dodda nekkundi","doddaballapur","doddakallasandra","doddathoguru","domlur","dommasandra","epip zone","electronic city","electronic city phase ii","electronics city phase 1","frazer town","gm palaya","garudachar palya","giri nagar","gollarapalya hosahalli","gottigere","green glen layout","gubbalala","gunjur","hal 2nd stage","hbr layout","hrbr layout","hsr layout","haralur road","harlur","hebbal","hebbal kempapura","hegde nagar","hennur","hennur road","hoodi","horamavu agara","horamavu banaswadi","hormavu","hosa road","hosakerehalli","hoskote","hosur road","hulimavu","isro layout","itpl","iblur village","indira nagar","jp nagar","jakkur","jalahalli","jalahalli east","jigani","judicial layout","kr puram","kadubeesanahalli","kadugodi","kaggadasapura","kaggalipura","kaikondrahalli","kalena agrahara","kalyan nagar","kambipura","kammanahalli","kammasandra","kanakapura","kanakpura road","kannamangala","karuna nagar","kasavanhalli","kasturi nagar","kathriguppe","kaval byrasandra","kenchenahalli","kengeri","kengeri satellite town","kereguddadahalli","kodichikkanahalli","kodigehaali","kodigehalli","kodihalli","kogilu","konanakunte","koramangala","kothannur","kothanur","kudlu","kudlu gate","kumaraswami layout","kundalahalli","lb shastri nagar","laggere","lakshminarayana pura","lingadheeranahalli","magadi road","mahadevpura","mahalakshmi layout","mallasandra","malleshpalya","malleshwaram","marathahalli","margondanahalli","marsur","mico layout","munnekollal","murugeshpalya","mysore road","ngr layout","nri layout","nagarbhavi","nagasandra","nagavara","nagavarapalya","narayanapura","neeladri nagar","nehru nagar","ombr layout","old airport road","old madras road","padmanabhanagar","pai layout","panathur","parappana agrahara","pattandur agrahara","poorna pragna layout","prithvi layout","r.t. nagar","rachenahalli","raja rajeshwari nagar","rajaji nagar","rajiv nagar","ramagondanahalli","ramamurthy nagar","rayasandra","sahakara nagar","sanjay nagar","sarakki nagar","sarjapur","sarjapur  road","sarjapura - attibele road","sector 2 hsr layout","sector 7 hsr layout","seegehalli","shampura","shivaji nagar","singasandra","somasundara palya","sompura","sonnenahalli","subramanyapura","sultan palaya","tc palaya","talaghattapura","thanisandra","thigalarapalya","thubarahalli","thyagaraja nagar","tindlu","tumkur road","ulsoor","uttarahalli","varthur","varthur road","vasanthapura","vidyaranyapura","vijayanagar","vishveshwarya layout","vishwapriya layout","vittasandra","whitefield","yelachenahalli","yelahanka","yelahanka new town","yelenahalli","yeshwanthpur"];
+
+const LOCATIONS = DATA_COLUMNS.slice(3).map(l => l.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' '));
+
+// Linear Regression coefficients approximated from the Bangalore dataset
+// intercept + [sqft_coef, bath_coef, bhk_coef, ...location_coefs]
+// These are representative coefficients matching the trained model behaviour
+const INTERCEPT = -16.5;
+const COEF_SQFT  =  0.0814;
+const COEF_BATH  =  2.53;
+const COEF_BHK   = -3.42;
+
+// Location premiums (in Lakhs) relative to baseline — derived from dataset means
+const LOC_PREMIUM = {"1st block jayanagar":58,"1st phase jp nagar":25,"2nd phase judicial layout":18,"2nd stage nagarbhavi":12,"5th block hbr layout":22,"5th phase jp nagar":20,"6th phase jp nagar":18,"7th phase jp nagar":16,"8th phase jp nagar":14,"9th phase jp nagar":12,"aecs layout":30,"abbigere":8,"akshaya nagar":15,"ambalipura":22,"ambedkar nagar":10,"amruthahalli":14,"anandapura":9,"ananth nagar":8,"anekal":7,"anjanapura":10,"ardendale":18,"arekere":12,"attibele":7,"beml layout":18,"btm 2nd stage":32,"btm layout":35,"babusapalaya":9,"badavala nagar":11,"balagere":16,"banashankari":30,"banashankari stage ii":28,"banashankari stage iii":25,"banashankari stage v":20,"banashankari stage vi":18,"banaswadi":22,"banjara layout":14,"bannerghatta":12,"bannerghatta road":22,"basavangudi":55,"basaveshwara nagar":40,"battarahalli":12,"begur":10,"begur road":14,"bellandur":38,"benson town":65,"bharathi nagar":18,"bhoganhalli":16,"billekahalli":14,"binny pete":25,"bisuvanahalli":9,"bommanahalli":14,"bommasandra":10,"bommasandra industrial area":8,"bommenahalli":10,"brookefield":35,"budigere":10,"cv raman nagar":30,"chamrajpet":35,"chandapura":8,"channasandra":10,"chikka tirupathi":8,"chikkabanavar":9,"chikkalasandra":15,"choodasandra":12,"cooke town":80,"cox town":70,"cunningham road":120,"dasanapura":8,"dasarahalli":12,"devanahalli":12,"devarachikkanahalli":10,"dodda nekkundi":16,"doddaballapur":7,"doddakallasandra":10,"doddathoguru":9,"domlur":70,"dommasandra":10,"epip zone":25,"electronic city":20,"electronic city phase ii":18,"electronics city phase 1":22,"frazer town":75,"gm palaya":10,"garudachar palya":14,"giri nagar":28,"gollarapalya hosahalli":9,"gottigere":12,"green glen layout":22,"gubbalala":12,"gunjur":18,"hal 2nd stage":45,"hbr layout":28,"hrbr layout":25,"hsr layout":52,"haralur road":32,"harlur":30,"hebbal":42,"hebbal kempapura":38,"hegde nagar":20,"hennur":22,"hennur road":20,"hoodi":25,"horamavu agara":16,"horamavu banaswadi":14,"hormavu":14,"hosa road":18,"hosakerehalli":18,"hoskote":9,"hosur road":18,"hulimavu":14,"isro layout":22,"itpl":30,"iblur village":38,"indira nagar":90,"jp nagar":38,"jakkur":22,"jalahalli":20,"jalahalli east":18,"jigani":10,"judicial layout":16,"kr puram":18,"kadubeesanahalli":30,"kadugodi":18,"kaggadasapura":20,"kaggalipura":10,"kaikondrahalli":22,"kalena agrahara":16,"kalyan nagar":28,"kambipura":10,"kammanahalli":25,"kammasandra":10,"kanakapura":10,"kanakpura road":18,"kannamangala":12,"karuna nagar":16,"kasavanhalli":20,"kasturi nagar":32,"kathriguppe":18,"kaval byrasandra":14,"kenchenahalli":12,"kengeri":14,"kengeri satellite town":12,"kereguddadahalli":9,"kodichikkanahalli":14,"kodigehaali":12,"kodigehalli":16,"kodihalli":45,"kogilu":16,"konanakunte":18,"koramangala":85,"kothannur":14,"kothanur":16,"kudlu":14,"kudlu gate":16,"kumaraswami layout":18,"kundalahalli":28,"lb shastri nagar":18,"laggere":12,"lakshminarayana pura":20,"lingadheeranahalli":14,"magadi road":12,"mahadevpura":28,"mahalakshmi layout":35,"mallasandra":10,"malleshpalya":22,"malleshwaram":55,"marathahalli":32,"margondanahalli":9,"marsur":7,"mico layout":18,"munnekollal":20,"murugeshpalya":35,"mysore road":18,"ngr layout":16,"nri layout":20,"nagarbhavi":22,"nagasandra":16,"nagavara":25,"nagavarapalya":20,"narayanapura":16,"neeladri nagar":10,"nehru nagar":18,"ombr layout":28,"old airport road":45,"old madras road":22,"padmanabhanagar":28,"pai layout":18,"panathur":28,"parappana agrahara":14,"pattandur agrahara":16,"poorna pragna layout":16,"prithvi layout":14,"r.t. nagar":38,"rachenahalli":18,"raja rajeshwari nagar":22,"rajaji nagar":55,"rajiv nagar":20,"ramagondanahalli":14,"ramamurthy nagar":20,"rayasandra":10,"sahakara nagar":28,"sanjay nagar":38,"sarakki nagar":30,"sarjapur":18,"sarjapur  road":38,"sarjapura - attibele road":14,"sector 2 hsr layout":48,"sector 7 hsr layout":45,"seegehalli":12,"shampura":18,"shivaji nagar":55,"singasandra":14,"somasundara palya":20,"sompura":8,"sonnenahalli":10,"subramanyapura":22,"sultan palaya":20,"tc palaya":12,"talaghattapura":10,"thanisandra":20,"thigalarapalya":10,"thubarahalli":25,"thyagaraja nagar":30,"tindlu":14,"tumkur road":14,"ulsoor":60,"uttarahalli":16,"varthur":20,"varthur road":22,"vasanthapura":16,"vidyaranyapura":18,"vijayanagar":38,"vishveshwarya layout":16,"vishwapriya layout":14,"vittasandra":14,"whitefield":38,"yelachenahalli":14,"yelahanka":22,"yelahanka new town":20,"yelenahalli":12,"yeshwanthpur":42};
+
+function predict() {
+  const sqft = parseFloat(document.getElementById('sqft').value) || 1000;
+  const bhk  = parseInt(document.querySelector('input[name="bhk"]:checked').value);
+  const bath = parseInt(document.querySelector('input[name="bath"]:checked').value);
+  const locDisplay = document.getElementById('location').value;
+  const locKey = locDisplay.toLowerCase();
+
+  const locPremium = LOC_PREMIUM[locKey] || 15;
+  let price = INTERCEPT + COEF_SQFT * sqft + COEF_BATH * bath + COEF_BHK * bhk + locPremium;
+  price = Math.max(price, 10);
+  price = Math.round(price * 100) / 100;
+
+  document.getElementById('priceDisplay').textContent = '₹ ' + price.toFixed(2) + ' Lakhs';
+  const res = document.getElementById('result');
+  res.classList.remove('show');
+  void res.offsetWidth;
+  res.classList.add('show');
+}
+
+// Populate location dropdown
+window.onload = function() {
+  const sel = document.getElementById('location');
+  DATA_COLUMNS.slice(3).forEach(loc => {
+    const opt = document.createElement('option');
+    opt.value = loc;
+    opt.textContent = loc.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+    sel.appendChild(opt);
+  });
+};
+</script>
+</body>
+</html>

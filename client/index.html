@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Real Estate - Core</title>
+    <link rel="icon" type="image/png" href="house.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-start: #0f172a;
+            --bg-mid: #1e1b4b;
+            --bg-end: #0f172a;
+            --silver: #ffffff;
+            --accent: #0ea5e9;
+            --accent-dark: #3b82f6;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-mid), var(--bg-end));
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            color: var(--silver);
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .viewport {
+            perspective: 2000px;
+            width: 100vw; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+
+        .canvas-3d {
+            position: relative;
+            width: 900px; height: 550px;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: rotateX(90deg) rotateZ(0deg) scale(0.8);
+        }
+
+        .layer {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Vibrant beautiful imagery */
+        .layer-1 { background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200'); opacity: 0.8;}
+        .layer-2 { background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200'); opacity: 0.6; mix-blend-mode: overlay; }
+        .layer-3 { background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200'); opacity: 0.5; mix-blend-mode: screen; }
+
+        .contours {
+            position: absolute;
+            width: 200%; height: 200%;
+            top: -50%; left: -50%;
+            background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 40px, rgba(14, 165, 233, 0.1) 41px, transparent 42px);
+            transform: translateZ(120px);
+            pointer-events: none;
+        }
+
+        .interface-grid {
+            position: fixed;
+            inset: 0;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            grid-column: 1 / -1;
+            align-self: center;
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            pointer-events: auto;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #fff;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        .cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(14, 165, 233, 0.6); }
+
+        .top-left { font-family: 'Syncopate', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 1.5rem; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+        .top-right { text-align: right; font-family: monospace; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+        
+        .bottom-left { font-family: monospace; font-size: 0.85rem; color: #94a3b8; }
+
+    </style>
+</head>
+<body>
+
+    <div class="interface-grid">
+        <div class="top-left">AI_VALUATION_CORE</div>
+        <div class="top-right">
+            <div>LOCATION: BANGALORE</div>
+            <div>LATITUDE: 12.9716° N</div>
+            <div style="color: #10b981;">STATUS: ONLINE</div>
+        </div>
+
+        <h1 class="hero-title">PREDICTIVE<br>REAL ESTATE</h1>
+
+        <div style="grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: flex-end;">
+            <div class="bottom-left">
+                <p>[ NEURAL NETWORK v2.0 ]</p>
+                <p>VOICE AI & TOPOGRAPHICAL MAPPING</p>
+            </div>
+           <a href="dashboard.html" class="cta-button">INITIALIZE SYSTEM</a>
+        </div>
+    </div>
+
+    <div class="viewport">
+        <div class="canvas-3d" id="canvas3d">
+            <div class="layer layer-1" id="layer1"></div>
+            <div class="layer layer-2" id="layer2"></div>
+            <div class="layer layer-3" id="layer3"></div>
+            <div class="contours"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById('canvas3d');
+            const layers = [
+                document.getElementById('layer1'),
+                document.getElementById('layer2'),
+                document.getElementById('layer3')
+            ];
+
+            // Entrance Animation
+            setTimeout(() => {
+                canvas.style.opacity = '1';
+                canvas.style.transform = 'rotateX(55deg) rotateZ(-25deg) scale(1)';
+            }, 300);
+
+            // Mouse Parallax Logic
+            window.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.pageX) / 25;
+                const y = (window.innerHeight / 2 - e.pageY) / 25;
+
+                canvas.style.transform = `rotateX(${55 + y / 2}deg) rotateZ(${-25 + x / 2}deg) scale(1)`;
+
+                layers.forEach((layer, index) => {
+                    const depth = (index + 1) * 15;
+                    const moveX = x * (index + 1) * 0.2;
+                    const moveY = y * (index + 1) * 0.2;
+                    layer.style.transform = `translateZ(${depth}px) translate(${moveX}px, ${moveY}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
