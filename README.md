@@ -1,154 +1,82 @@
-# 🏠 AI-Powered Bangalore House Price Prediction System
+<h1 align="center">🏠 AI-Powered Bangalore House Price Prediction System</h1>
 
-> **An AI-powered Full Stack Real Estate Valuation Platform with Voice Assistant, Interactive Maps, Investment Analytics, Market Trends, and Machine Learning Price Prediction.**
+<p align="center">
+  <strong>An AI-powered Full Stack Real Estate Valuation Platform featuring Machine Learning, Voice Search, Investment Analytics, Interactive Maps, and Smart Property Insights.</strong>
+</p>
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
-![Flask](https://img.shields.io/badge/Flask-Backend-black?logo=flask)
-![Machine Learning](https://img.shields.io/badge/Machine-Learning-success)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)
-![Render](https://img.shields.io/badge/Backend-Render-blue)
-![Vercel](https://img.shields.io/badge/Frontend-Vercel-black)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Flask-3.1-000000?style=for-the-badge&logo=flask"/>
+  <img src="https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Frontend-Vercel-black?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Backend-Render-blue?style=for-the-badge"/>
+</p>
 
 ---
 
-# 🚀 Live Demo
+# 🌐 Live Demo
 
-### 🌐 Frontend
+### 🚀 Frontend
+
 https://house-price-prediction-model-xi.vercel.app/
 
 ### ⚡ Backend API
+
 https://house-price-prediction-model-1-ybt0.onrender.com
 
 ---
 
-# 📌 Project Overview
+# 📖 Overview
 
-The AI-Powered Bangalore House Price Prediction System is an intelligent real estate valuation platform that predicts residential property prices using Machine Learning while providing a modern AI-driven user experience.
+The **AI-Powered Bangalore House Price Prediction System** is a full-stack real estate intelligence platform that predicts residential property prices using Machine Learning while providing users with a modern, AI-driven experience.
 
-Unlike traditional price prediction websites, this platform combines:
+Unlike traditional property valuation websites, this application combines intelligent price prediction with voice-assisted property search, investment analytics, interactive maps, and market trend visualization to help users make informed real estate decisions.
 
-- 🤖 Machine Learning Prediction
-- 🎙 Voice Based Property Search
-- 🗺 Interactive Property Map
-- 📈 Market Trend Analysis
-- 💰 Investment Insights
-- 📄 PDF Report Generation
-- 📊 Property Analytics Dashboard
-
-The system is designed as a complete real-estate intelligence platform rather than a simple ML prediction model.
+Designed as a comprehensive property intelligence platform, it delivers a seamless experience for home buyers, investors, and real estate enthusiasts.
 
 ---
 
 # ✨ Features
 
-## 🤖 AI Price Prediction
-
-Predicts property prices using trained Machine Learning models based on:
-
-- Area (Sqft)
-- BHK
-- Bathrooms
-- Location
-- Furnishing
-- Amenities
-- Nearby Facilities
+- 🏠 AI-powered House Price Prediction
+- 🎙 Voice-based Property Search
+- 📍 Interactive Property Map
+- 📈 Market Trend Visualization
+- 💰 Investment Analysis
+- 📄 PDF Report Generation
+- 📊 Property Analytics Dashboard
+- 🌙 Modern Responsive UI
+- ⚡ Fast REST API Backend
 
 ---
 
-## 🎙 Voice AI Assistant
+# 🎯 Target Users
 
-Users can simply speak:
-
-> "Show me a fully furnished 3 BHK apartment in Indira Nagar with gym and parking."
-
-The system automatically extracts:
-
-- Location
-- Area
-- BHK
-- Furnishing
-- Amenities
-
-using Natural Language Processing.
-
----
-
-## 📍 Interactive Property Map
-
-- Leaflet.js Maps
-- Location Marker
-- Nearby Area Visualization
-- Topographical View
-
----
-
-## 📈 Market Trend Analytics
-
-Visualizes historical property trends using Chart.js.
-
-Provides:
-
-- Price Growth
-- Historical Trends
-- Investment Direction
-
----
-
-## 💰 Investment Analytics
-
-Calculates
-
-- Estimated Rental Yield
-- Monthly Rental Income
-- Investment Rating
-
-Examples
-
-- Excellent Investment
-- Highly Undervalued
-- Overpriced
-
----
-
-## 📄 PDF Report Generator
-
-Generate a complete AI valuation report with one click.
-
-The report includes:
-
-- Property Details
-- Estimated Price
-- Market Trends
-- Investment Analysis
-
----
-
-## 🎨 Premium Modern UI
-
-- Dark Theme
-- Animated Dashboard
-- Interactive Charts
-- Responsive Design
-- Glassmorphism Effects
-- Futuristic AI Interface
+- 🏡 Home Buyers
+- 💼 Real Estate Investors
+- 🏢 Property Consultants
+- 📊 Data Science Enthusiasts
+- 👨‍💻 Developers exploring ML applications
+- 🎓 Students learning Machine Learning and Full Stack Development
 
 ---
 
 # 🧠 Machine Learning
 
-The prediction engine uses a trained regression model based on Bangalore Housing Dataset.
+The prediction engine is trained using the **Bangalore Housing Dataset** and leverages regression-based Machine Learning algorithms to estimate residential property prices.
 
-### Features Used
+### Prediction Parameters
 
-- Total Sqft
-- BHK
+- Total Area (Sqft)
+- Number of Bedrooms (BHK)
 - Bathrooms
-- Location Encoding
+- Property Location
 - Furnishing Type
-- Amenities
+- Available Amenities
 - Nearby Distance Metrics
 
-The backend also performs additional intelligent adjustments using business rules for amenities and furnishing.
+Additional business logic enhances predictions based on furnishing quality and property amenities.
 
 ---
 
@@ -158,7 +86,7 @@ The backend also performs additional intelligent adjustments using business rule
 
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (ES6)
 - jQuery
 - Chart.js
 - Leaflet.js
@@ -179,8 +107,8 @@ The backend also performs additional intelligent adjustments using business rule
 ## Machine Learning
 
 - Scikit-Learn
-- NumPy
 - Pandas
+- NumPy
 - Pickle
 - XGBoost (Support)
 
@@ -188,35 +116,67 @@ The backend also performs additional intelligent adjustments using business rule
 
 ## Deployment
 
-Frontend
+### Frontend
 
 - Vercel
 
-Backend
+### Backend
 
 - Render
 
 ---
 
+# 🏗 System Architecture
+
+```text
+                 User
+                  │
+                  ▼
+         Responsive Web Interface
+                  │
+                  ▼
+      Voice Search / Form Input
+                  │
+                  ▼
+          Flask REST API Server
+                  │
+        ┌─────────┴──────────┐
+        ▼                    ▼
+ Machine Learning      Market Analytics
+ Prediction Model      & Investment Logic
+        │                    │
+        └─────────┬──────────┘
+                  ▼
+          Property Prediction
+                  │
+                  ▼
+      Charts • Maps • PDF Report
+                  │
+                  ▼
+                 User
+```
+
+---
+
 # 📂 Project Structure
 
-```
-House-Price-prediction-model
+```text
+House-Price-Prediction/
 │
-├── client
+├── client/
 │   ├── index.html
 │   ├── dashboard.html
 │   ├── standalone.html
 │   ├── app.js
 │   └── styles.css
 │
-├── server
+├── server/
 │   ├── server.py
 │   ├── util.py
 │   ├── requirements.txt
-│   └── artifacts
+│   └── artifacts/
 │
-├── model
+├── model/
 │   ├── banglore_home_prices_model.pickle
 │   ├── columns.json
 │   ├── bengaluru_house_prices.csv
@@ -229,45 +189,43 @@ House-Price-prediction-model
 
 # 🔌 API Endpoints
 
-### Get Locations
+## Get Available Locations
 
-```
+```http
 GET /api/locations
 ```
 
 ---
 
-### Predict Property Price
+## Predict House Price
 
-```
+```http
 POST /api/predict
 ```
 
-Parameters
+### Parameters
 
-```
-location
-sqft
-bhk
-bath
-amenities
-furnishing
-distance metrics
-```
+- location
+- sqft
+- bhk
+- bath
+- amenities
+- furnishing
+- distance_metrics
 
 ---
 
-### Market Trends
+## Market Trends
 
-```
+```http
 GET /api/market_trends
 ```
 
 ---
 
-### NLP Voice Parsing
+## Voice NLP Parsing
 
-```
+```http
 POST /api/nlp_parse
 ```
 
@@ -275,32 +233,32 @@ POST /api/nlp_parse
 
 # ⚙ Installation
 
-Clone repository
+Clone the repository
 
 ```bash
-git clone https://github.com/Sumit692/House-Price-prediction-model.git
+git clone https://github.com/ShashankDas099/House-Price-Prediction.git
 ```
 
-Go into project
+Move into the project directory
 
 ```bash
-cd House-Price-prediction-model
+cd House-Price-Prediction
 ```
 
-Install dependencies
+Install the required dependencies
 
 ```bash
 pip install -r server/requirements.txt
 ```
 
-Run
+Run the backend server
 
 ```bash
 cd server
 python server.py
 ```
 
-Open
+Open your browser and visit
 
 ```
 http://localhost:5000
@@ -308,59 +266,83 @@ http://localhost:5000
 
 ---
 
-# 📊 Future Improvements
+# 🚀 Workflow
 
-- Live Bangalore Property API
-- Google Maps Integration
-- Satellite View
-- Authentication System
-- AI Chatbot for Buyers
-- Mortgage Calculator
+1. Enter property details manually or using voice input.
+2. The backend processes user inputs.
+3. The Machine Learning model predicts the estimated property price.
+4. Market trends and investment insights are generated.
+5. Interactive charts and maps visualize the results.
+6. Users can download a complete PDF valuation report.
+
+---
+
+# 🚀 Future Enhancements
+
+- Google Maps API Integration
+- Live Property Data APIs
+- Mortgage & EMI Calculator
+- AI Chatbot for Property Queries
 - Property Recommendation Engine
-- Price Forecast using Time Series
-- Multi-city Support
+- Time-Series Price Forecasting
+- Satellite View Support
+- Multi-city Expansion
 - Image-based Property Analysis
+- User Authentication & Saved Searches
 
 ---
 
-# 📸 Screenshots
-
-Add screenshots here.
-
-<img width="1366" height="697" alt="Screenshot (1)" src="https://github.com/user-attachments/assets/44327746-9950-4c0c-a2c9-840af56a6ccf" />
-
-<img width="1366" height="690" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/07563ceb-268e-49bf-8652-96189680911e" />
-
-<img width="1366" height="688" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/a5965cb5-773c-4809-9e11-6d5fd35e6ad9" />
-
----
-
-# 🎯 Learning Outcomes
+# 🎓 Learning Outcomes
 
 This project demonstrates practical implementation of:
 
 - Machine Learning
-- Full Stack Development
-- REST APIs
+- Regression Models
+- REST API Development
+- Flask Backend Development
+- Full Stack Web Development
 - Data Visualization
-- NLP
-- Deployment
+- Natural Language Processing
+- Interactive Maps
+- Cloud Deployment
 - Responsive UI Design
-- AI Integration
 
 ---
 
-# 👨‍💻 Author
+# 👥 Development Team
 
-## Sumit Kumar Singh
+This project was collaboratively developed as part of a Machine Learning and Full Stack Development initiative.
 
-AI Developer | Software Engineer | Machine Learning Enthusiast
-
+| Team Member | Contribution |
+|-------------|--------------|
+| **Raj Mishra** | Frontend Development, UI/UX Design, Dashboard & Interactive Visualizations |
+| **Sumit Kumar Singh** | Machine Learning Model Development, Backend APIs & Deployment |
+| **Shashank Das** | Backend Development, API Integration, Feature Engineering & System Integration |
 
 ---
 
-# ⭐ If you like this project
+# 📄 License
 
-Give this repository a ⭐ on GitHub!
+This project is developed for educational and learning purposes.
 
-```
+---
+
+# 🙏 Acknowledgements
+
+This project utilizes several open-source technologies and frameworks:
+
+- Flask
+- Scikit-Learn
+- Pandas
+- NumPy
+- Chart.js
+- Leaflet.js
+- HTML2PDF
+- Vercel
+- Render
+
+Special thanks to the open-source community for making these technologies freely available.
+
+---
+
+<h3 align="center">⭐ If you found this project useful, consider giving it a Star!</h3>
